@@ -16,19 +16,28 @@ export default function Welcome({
     portfolioData,
 }: PageProps<{ portfolioData?: Partial<PortfolioData> }>) {
 
-    // Merge any dynamic data provided via DB with our static config
-    const data = { ...defaultPortfolioData, ...portfolioData };
+    // Merge backend data (if any) with static fallbacks.
+    // portfolioData may be undefined when using Route::inertia() with no controller.
+    const data: PortfolioData = {
+        ...defaultPortfolioData,
+        ...(portfolioData ?? {}),
+        personalInfo: {
+            ...defaultPortfolioData.personalInfo,
+            ...(portfolioData?.personalInfo ?? {}),
+        },
+    };
+
+    const pageTitle = `${data.personalInfo.name || 'Portfolio'} | ${data.personalInfo.title || 'Developer'}`;
 
     return (
         <div className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-teal selection:text-white scroll-smooth relative">
-            <Head>
-                <title>{data.personalInfo.name} | {data.personalInfo.title}</title>
-                <meta name="description" content={data.personalInfo.aboutText} />
-                <meta property="og:title" content={`${data.personalInfo.name} | ${data.personalInfo.title}`} />
-                <meta property="og:description" content={data.personalInfo.tagline} />
-                <meta property="og:type" content="website" />
-                <meta name="theme-color" content="#25c0f4" />
-            </Head>
+            {/*
+             * Use the title prop, NOT child <meta> tags.
+             * InertiaJS v2 crashes with Object.keys(null) when <meta> children
+             * receive null/undefined content values. See: github.com/inertiajs/inertia/issues
+             * Static meta tags (og:*, description, theme-color) live in app.blade.php.
+             */}
+            <Head title={pageTitle} />
 
             <Navbar />
 
