@@ -6,8 +6,7 @@ interface HeroProps {
 }
 
 export default function Hero({ data }: HeroProps) {
-    // Split tagline to highlight specific skills, assuming format like: "I build reliable backend systems with Java, PHP & Laravel"
-    // We want to highlight the last part: "Java, PHP & Laravel"
+    // Split tagline on 'with' to highlight the tech stack portion
     const taglineParts = data.tagline.split('with');
     const prefix = taglineParts[0] ? `${taglineParts[0]} with ` : data.tagline;
     const highlight = taglineParts.length > 1 ? taglineParts[1] : '';
@@ -79,12 +78,14 @@ export default function Hero({ data }: HeroProps) {
                                 </div>
                                 {/* Terminal Content */}
                                 <div className="p-6 font-mono text-sm space-y-4 text-foreground/80 flex-1">
-                                    <p><span className="text-teal">sudheer@portfolio</span><span className="text-muted-foreground">:~$</span> ./start-project.sh</p>
-                                    <p className="text-muted-foreground delay-100 animate-pulse">Initializing scalable architecture...</p>
-                                    <p className="delay-200">[✓] Laravel Framework loaded</p>
-                                    <p className="delay-300">[✓] Database schemas optimized</p>
-                                    <p className="delay-500">[✓] RESTful API endpoints secured</p>
-                                    <p className="delay-700"><span className="text-green-500 font-bold">Success:</span> Backend systems go. Ready for requests.</p>
+                                    <p><span className="text-teal">sudheer@portfolio</span><span className="text-muted-foreground">:~$</span> ./start-backend.sh</p>
+                                    <p className="text-muted-foreground animate-pulse">Initializing production architecture...</p>
+                                    <p>[✓] Laravel + Spring Boot loaded</p>
+                                    <p>[✓] RBAC policies &amp; JWT secured</p>
+                                    <p>[✓] Redis queues &amp; jobs dispatched</p>
+                                    <p>[✓] Microservices layer deployed</p>
+                                    <p>[✓] DB indexes &amp; queries optimized</p>
+                                    <p><span className="text-green-500 font-bold">Ready:</span> APIs live. Zero bugs in production.</p>
                                     <p className="animate-pulse">_</p>
                                 </div>
                             </div>

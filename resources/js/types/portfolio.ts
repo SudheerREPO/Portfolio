@@ -4,6 +4,20 @@ export interface Education {
     year: string;
 }
 
+export interface Skill {
+    category: 'laravel' | 'spring';
+    name: string;
+    level: 'Familiar' | 'Proficient' | 'Advanced' | 'Expert';
+    tags?: string[];
+}
+
+export interface Stat {
+    value: string;
+    label: string;
+    icon: string; // Lucide icon name
+    accent: 'teal' | 'green';
+}
+
 export interface QuickFact {
     icon: 'school' | 'schedule' | 'location_on';
     label: string;
@@ -52,4 +66,6 @@ export interface PortfolioData {
     projects: Project[];
     socialLinks: SocialLink[];
     services: Service[];
+    skills: Skill[];
+    stats: Stat[];
 }

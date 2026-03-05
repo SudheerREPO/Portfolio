@@ -62,27 +62,26 @@ export default function About({ data }: AboutProps) {
                         </div>
 
                         <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6 leading-tight">
-                            {personalInfo.title} specializing in Java, PHP, and Laravel.
+                            {personalInfo.title} — specializing in Laravel, Spring Boot, RBAC &amp; Redis.
                         </h3>
 
                         <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground space-y-6">
                             <p className="leading-relaxed">
-                                I build robust, scalable server-side applications and RESTful APIs.
-                                Passionate about clean code and optimizing database performance.
-                                With a strong foundation in modern backend technologies, I focus on
-                                creating secure and efficient systems that power seamless user experiences.
+                                {personalInfo.aboutText}
                             </p>
 
                             {/* Decorative tech stack visual */}
-                            <div className="mt-10 pt-8 border-t border-border grid grid-cols-2 sm:grid-cols-4 gap-6">
+                            <div className="mt-10 pt-8 border-t border-border grid grid-cols-2 sm:grid-cols-3 gap-6">
                                 {[
-                                    { label: 'PHP', value: 'Backend Logic' },
-                                    { label: 'Laravel', value: 'Framework' },
-                                    { label: 'Java', value: 'Core Systems' },
-                                    { label: 'MySQL', value: 'Databases' }
+                                    { label: 'PHP 8.x', value: 'Backend Logic' },
+                                    { label: 'Laravel', value: 'Full Framework' },
+                                    { label: 'Java 17+', value: 'Core Systems' },
+                                    { label: 'Spring Boot', value: 'Microservices' },
+                                    { label: 'Redis', value: 'Caching & Queues' },
+                                    { label: 'MySQL / PgSQL', value: 'Databases' },
                                 ].map((stat, i) => (
                                     <div key={i} className="flex flex-col">
-                                        <span className="text-2xl font-bold text-foreground">{stat.label}</span>
+                                        <span className="text-xl font-bold text-foreground">{stat.label}</span>
                                         <span className="text-sm text-teal font-medium mt-1">{stat.value}</span>
                                     </div>
                                 ))}

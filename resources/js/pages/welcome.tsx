@@ -5,6 +5,8 @@ import Footer from '@/components/portfolio/Footer';
 import Hero from '@/components/portfolio/Hero';
 import Navbar from '@/components/portfolio/Navbar';
 import Projects from '@/components/portfolio/Projects';
+import Skills from '@/components/portfolio/Skills';
+import Stats from '@/components/portfolio/Stats';
 import { defaultPortfolioData } from '@/data/portfolioData';
 import { PageProps } from '@/types';
 import { PortfolioData } from '@/types/portfolio';
@@ -44,7 +46,9 @@ export default function Welcome({
             <main>
                 <Hero data={data.personalInfo} />
                 <About data={{ personalInfo: data.personalInfo, quickFacts: data.quickFacts }} />
+                <Skills data={data.skills} />
                 <Experience data={data.experience} />
+                <Stats data={data.stats} />
                 <Projects data={data.projects} />
                 <Contact data={{ personalInfo: data.personalInfo, socialLinks: data.socialLinks }} />
             </main>

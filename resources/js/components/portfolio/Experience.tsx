@@ -5,6 +5,18 @@ interface ExperienceProps {
     data: PortfolioData['experience'];
 }
 
+// Keywords that get highlighted as badges in responsibility text
+const TECH_KEYWORDS = [
+    'RBAC', 'Redis', 'Queues', 'Jobs', 'JWT', 'Sanctum', 'OAuth2', 'Observers',
+    'Horizon', 'Inertia.js', 'Eloquent', 'Policies', 'Gates', 'Spring Boot',
+    'Spring Security', 'Spring Data JPA', 'Hibernate', 'Microservices',
+    'MySQL', 'PostgreSQL', 'Laravel', 'PHP', 'Java', 'REST', 'API Resources',
+];
+
+function extractBadges(text: string): string[] {
+    return TECH_KEYWORDS.filter((kw) => text.includes(kw));
+}
+
 export default function Experience({ data }: ExperienceProps) {
     return (
         <section id="experience" className="py-20 md:py-32 relative">
@@ -55,13 +67,30 @@ export default function Experience({ data }: ExperienceProps) {
                                         </div>
                                     </div>
 
-                                    <ul className="space-y-4">
-                                        {job.responsibilities.map((task, i) => (
-                                            <li key={i} className="flex items-start text-muted-foreground">
-                                                <CheckCircle2 className="h-5 w-5 text-teal mr-3 mt-0.5 flex-shrink-0" />
-                                                <span className="leading-relaxed">{task}</span>
-                                            </li>
-                                        ))}
+                                    <ul className="space-y-5">
+                                        {job.responsibilities.map((task, i) => {
+                                            const badges = extractBadges(task);
+                                            return (
+                                                <li key={i} className="flex flex-col gap-2">
+                                                    <div className="flex items-start text-muted-foreground">
+                                                        <CheckCircle2 className="h-5 w-5 text-teal mr-3 mt-0.5 flex-shrink-0" />
+                                                        <span className="leading-relaxed">{task}</span>
+                                                    </div>
+                                                    {badges.length > 0 && (
+                                                        <div className="flex flex-wrap gap-1.5 ml-8">
+                                                            {badges.map((badge, bi) => (
+                                                                <span
+                                                                    key={bi}
+                                                                    className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-teal/10 text-teal border border-teal/20"
+                                                                >
+                                                                    {badge}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </li>
+                                            );
+                                        })}
                                     </ul>
                                 </div>
                             </div>
