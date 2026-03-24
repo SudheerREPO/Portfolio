@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../css/app.css';
-import Welcome from './Pages/welcome';
+import Welcome from './pages/welcome';
 import { initializeTheme } from '@/hooks/use-appearance';
 
 // Initialize the theme immediately
